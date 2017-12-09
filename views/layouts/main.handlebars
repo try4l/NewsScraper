@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>News Scraper</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <a href="/"><div id="sitename">News Scraper</div></a>
+        <a href="/"><button id="all-articles">All Articles</button></a>
+        <a href="/saved"><button id="saved-articles">Saved Articles</button></a>
+        <form action="/scrape" method="GET">
+            <button type="submit" id="refresh-articles">Scrape Website for Articles</button>
+        </form>
+        <form action="/search" method="POST">
+            <button type="submit" id="search-submit">Submit</button>
+            <input type="text" name="search" placeholder="Search for articles" id="search-input">
+        </form>
+    </header>
+    
+      <h1>Note Scraper</h1>
+      <h2><i>If you can do this...the homework should be no problem.</i></h2>
+      <div id="articles"></div>
+      <div id="notes"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+
+    {{{body}}}
+</body>
+
+</html>
