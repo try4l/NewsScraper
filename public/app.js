@@ -2,10 +2,17 @@
 $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
+    console.log(".getJSON/articles:data[i]: ", data[i]);
+    console.log(".getJSON/articles:data[i].saved: ", data[i].saved);
     // Display the apropos information on the page
     $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-    // A button to save the article
-    $("#articles").append("<button data-id='" + data[i]._id + "' id='savearticle'>Save Article</button>");
+    if (data[i].saved) {
+      // A button to unsave the article
+      $("#articles").append("<button data-id='" + data[i]._id + "' id='unsavearticle'>UnSave Article</button>");
+    } else {
+      // A button to save the article
+      $("#articles").append("<button data-id='" + data[i]._id + "' id='savearticle'>Save Article</button>");
+    }
   }
 });
 
@@ -13,6 +20,8 @@ $.getJSON("/articles", function(data) {
 $.getJSON("/saved", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
+    console.log(".getJSON/saved:data[i]: ", data[i]);
+    console.log(".getJSON/saved:data[i].saved: ", data[i].saved);
     if(data[i].saved) {
       // Display the saved article information on the page      
       $("#saved").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
@@ -28,6 +37,7 @@ $(document).on("click", "p", function() {
   $("#notes").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
+  console.log("Click:p:thisId: ", thisId);
 
   // Now make an ajax call for the Article
   $.ajax({
@@ -60,7 +70,7 @@ $(document).on("click", "p", function() {
 $(document).on("click", "#savenote", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
-
+  console.log("Click:#savenote:thisId: ", thisId);
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
@@ -89,6 +99,7 @@ $(document).on("click", "#savenote", function() {
 $(document).on("click", "#savearticle", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
+  console.log("Click:#savearticle:thisId: ", thisId);
 
   // Run a POST request to change the flag, using what's entered in the inputs
   $.ajax({
@@ -110,6 +121,7 @@ $(document).on("click", "#savearticle", function() {
 $(document).on("click", "#unsavearticle", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
+  console.log("Click:#unsavearticle:thisId: ", thisId);
 
   // Run a POST request to change the flag, using what's entered in the inputs
   $.ajax({
@@ -133,7 +145,7 @@ $(document).on("click", "#saved-articles", function() {
   $("#notes").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
-
+  console.log("Click:#saved-articles:thisId: ", thisId);
   // Now make an ajax call for the Article
   $.ajax({
     method: "GET",
@@ -159,4 +171,12 @@ $(document).on("click", "#saved-articles", function() {
         $("#bodyinput").val(data.note.body);
       }
     });
+});
+
+// Whenever someone clicks the 'submit' search button
+$(document).on("click", "#search-submit", function() {
+  console.log("Click:#search-submit:search-input: ", search-input);
+    // Empty the text from the search input
+  $("#search-input").empty();
+
 });
