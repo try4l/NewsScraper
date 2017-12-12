@@ -55,7 +55,8 @@ app.get("/scrape", function(req, res) {
   
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-
+    let promises = [];
+    let results = [];
     // Now, we grab every h2 within an article tag, and do the following:
     $("article h2").each(function(i, element) {
       // Save an empty result object
@@ -70,19 +71,20 @@ app.get("/scrape", function(req, res) {
         .attr("href");
 
       // Create a new Article using the `result` object built from scraping
-      db.Article
-        .create(result)
-        .then(function(dbArticle) {
-          // If we were able to successfully scrape and save an Article, send a message to the client
-          res.send("Scrape Complete");
-        })
-        .catch(function(err) {
-          // If an error occurred, send it to the client
-          res.json(err);
-        });
+      promises.push(db.Article.update({ link: result.link }, result, { upsert: true}));
     });
+
+    Promise.all(promises).then(
+          function(dbArticle) {
+          // If we were able to successfully scrape and save an Article, send a message to the client
+          res.send(201, { message: 'Scrape Complete' });
+        },
+        function (err) {
+          res.send(500, err);
+        });
+
+
   });
-  res.redirect("/");
 });
 
 // Route for getting all Articles from the db
