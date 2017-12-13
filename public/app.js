@@ -7,16 +7,16 @@ $.getJSON("/articles", function(data) {
     // Display the apropos information on the page
     $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
     if (data[i].saved) {
-      // A button to unsave the article
-      $("#articles").append("<button data-id='" + data[i]._id + "' id='unsavearticle'>UnSave Article</button>");
+      // A button to unfavorite the article -- TO BE DONE
+      //$("#articles").append("<button data-id='" + data[i]._id + "' id='unsavearticle'>UnSave Article</button>");
     } else {
-      // A button to save the article
-      $("#articles").append("<button data-id='" + data[i]._id + "' id='savearticle'>Save Article</button>");
+      // A button to 'fave' the article
+      $("#articles").append("<button data-id='" + data[i]._id + "' id='savearticle'>Mark Favorite</button>");
     }
   }
 });
 
-// Grab the articles as a json
+// Grab the articles as a json - TO BE DONE
 $.getJSON("/saved", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
@@ -117,7 +117,7 @@ $(document).on("click", "#savearticle", function() {
     });
 });
 
-// When you click the unsavearticle button
+// When you click the unsavearticle button -- TO BE DONE
 $(document).on("click", "#unsavearticle", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
@@ -139,7 +139,7 @@ $(document).on("click", "#unsavearticle", function() {
     });
 });
 
-// Whenever someone clicks saved-articles button
+// Whenever someone clicks saved-articles button -- TO BE DONE
 $(document).on("click", "#saved-articles", function() {
   // Empty the notes from the note section
   $("#notes").empty();
@@ -173,10 +173,11 @@ $(document).on("click", "#saved-articles", function() {
     });
 });
 
-// Whenever someone clicks the 'submit' search button
+// Whenever someone clicks the 'submit' search button -- TO BE DONE
 $(document).on("click", "#search-submit", function() {
   console.log("Click:#search-submit:search-input: ", search-input);
     // Empty the text from the search input
   $("#search-input").empty();
 
 });
+

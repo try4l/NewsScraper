@@ -82,9 +82,8 @@ app.get("/scrape", function(req, res) {
         function (err) {
           res.send(500, err);
         });
-
-
   });
+  res.redirect("/");
 });
 
 // Route for getting all Articles from the db
@@ -119,7 +118,7 @@ app.get("/articles/:id", function(req, res) {
     });
 });
 
-// Route for getting saved Articles from the db
+// Route for getting 'faved' Articles from the db
 app.get("/saved/", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article
@@ -157,7 +156,7 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
-// Route for saving an Article
+// Route for 'faving' an Article
 app.post("/saved/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article

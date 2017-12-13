@@ -25,6 +25,7 @@ var ArticleSchema = new Schema({
     type: String,
     default: "/assets/images/no-image-available.jpg"
   },
+  // this flag is used to specify favorites (since article is already saved in the db)
   saved: {
     type: Boolean,
     default: false
